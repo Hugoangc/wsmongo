@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.webservices.wsmongo.domain.Post;
 import com.webservices.wsmongo.domain.User;
+import com.webservices.wsmongo.dto.AuthorDTO;
 import com.webservices.wsmongo.repository.PostRepository;
 import com.webservices.wsmongo.repository.UserRepository;
 
@@ -31,10 +32,12 @@ public class Instantiation implements CommandLineRunner {
     User fiorentina = new User(null, "Fiorentina Angelis", "fifiangel@gmail.com");
     User marry = new User(null, "Marry Sun", "sunnyma@gmail.com");
 
+    userRepository.saveAll(Arrays.asList(sophia, fiorentina, marry));
+
     Post post1 = new Post(null, Instant.parse("2025-11-21T03:42:10Z"), "Teste de mensagem", "Conteudo da mensagem",
-        marry);
+        new AuthorDTO(marry));
     Post post2 = new Post(null, Instant.parse("2025-11-21T04:42:10Z"), "Teste de mensagem", "Conteudo da mensagem",
-        marry);
+        new AuthorDTO(marry));
 
     userRepository.saveAll(Arrays.asList(sophia, fiorentina, marry));
     postRepository.saveAll(Arrays.asList(post1, post2));
