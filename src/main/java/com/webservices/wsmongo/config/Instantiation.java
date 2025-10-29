@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import com.webservices.wsmongo.domain.Post;
 import com.webservices.wsmongo.domain.User;
 import com.webservices.wsmongo.dto.AuthorDTO;
+import com.webservices.wsmongo.dto.CommentDTO;
 import com.webservices.wsmongo.repository.PostRepository;
 import com.webservices.wsmongo.repository.UserRepository;
 
@@ -39,6 +40,17 @@ public class Instantiation implements CommandLineRunner {
     Post post2 = new Post(null, Instant.parse("2025-11-21T04:42:10Z"), "Teste de mensagem", "Conteudo da mensagem",
         new AuthorDTO(marry));
 
+    CommentDTO c1 = new CommentDTO("Comentario feito para teste", Instant.parse("2025-11-21T04:42:10Z"),
+        new AuthorDTO(fiorentina));
+
+    CommentDTO c2 = new CommentDTO("Comentario secundario", Instant.parse("2025-11-25T07:42:10Z"),
+        new AuthorDTO(sophia));
+
+    CommentDTO c3 = new CommentDTO("Mais um mentario feito para teste", Instant.parse("2025-11-24T07:42:10Z"),
+        new AuthorDTO(fiorentina));
+
+    post1.getComments().addAll(Arrays.asList(c1, c2));
+    post2.getComments().addAll(Arrays.asList(c3));
     postRepository.saveAll(Arrays.asList(post1, post2));
     marry.getPosts().addAll(Arrays.asList(post1, post2));
     userRepository.save(marry);
