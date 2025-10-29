@@ -29,3 +29,7 @@ Projeto construído com intuíto de ser uma parte de estudos sobre desenvolvimen
 * **Padrão de Camadas** (Resource, Service, Repository)
 * **Padrão DTO** (Data Transfer Object)
 * **Tratamento de Exceções**
+
+
+### Diagrama de classe:
+<img src="https://i.imgur.com/yLQTiI2.png" alt="diagrama de classe">
