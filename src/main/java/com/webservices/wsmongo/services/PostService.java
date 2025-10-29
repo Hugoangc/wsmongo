@@ -29,4 +29,26 @@ public class PostService {
     maxDate = maxDate.plus(1, ChronoUnit.DAYS);
     return repo.fullSearch(text, minDate, maxDate);
   }
+
+  public Post insert(Post obj) {
+    obj.setId(null);
+    return repo.save(obj);
+  }
+
+  public void delete(String id) {
+    findById(id);
+    repo.deleteById(id);
+  }
+
+  public Post update(Post obj) {
+    Post newObj = findById(obj.getId());
+    updateData(newObj, obj);
+    return repo.save(newObj);
+  }
+
+  private void updateData(Post newObj, Post obj) {
+    newObj.setTitle(obj.getTitle());
+    newObj.setBody(obj.getBody());
+
+  }
 }
